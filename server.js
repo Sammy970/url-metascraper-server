@@ -2,9 +2,9 @@ const express = require("express");
 
 const metascraperDescription = require("metascraper-description");
 
-const metascraper = require("metascraper")([
-  metascraperDescription(),
-]);
+const metascraper = require("metascraper")([metascraperDescription()]);
+
+const { extractMetadata } = require("link-meta-extractor");
 
 const got = require("got");
 
@@ -14,24 +14,10 @@ const port = 3000 || process.env.PORT;
 
 app.get("/", async (req, res) => {
   const link = req.query.link;
-  console.log(link);
-  const data = await fetchOGMetadata(link);
-  res.send(data);
+  const metaInformation = await extractMetadata(link);
+  res.send(metaInformation);
+  //   const data = await fetchOGMetadata(link);
 });
-
-async function fetchOGMetadata(url) {
-  try {
-    const { body: html, url: finalUrl } = await got(url);
-    const metadata = await metascraper({ html, url: finalUrl });
-
-    // console.log(metadata);
-
-    return metadata;
-  } catch (error) {
-    console.error("Error fetching Open Graph metadata:", error);
-    return null;
-  }
-}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
