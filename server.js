@@ -1,12 +1,9 @@
 const express = require("express");
 
+const metascraperDescription = require("metascraper-description");
+
 const metascraper = require("metascraper")([
-  require("metascraper-description")(),
-  //   require("metascraper-author")(),
-  //   require("metascraper-image")(),
-  //   require("metascraper-logo")(),
-  //   require("metascraper-title")(),
-  //   require("metascraper-url")(),
+  metascraperDescription(),
 ]);
 
 const got = require("got");

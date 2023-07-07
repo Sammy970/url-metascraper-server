@@ -9,9 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "got": "^11.8.6",
-    "metascraper": "^5.34.8",
-    "metascraper-description": "^5.34.7"
+    "express": "4.18.2",
+    "got": "11.8.6",
+    "metascraper": "5.34.8",
+    "metascraper-description": "5.34.7"
   }
 }
